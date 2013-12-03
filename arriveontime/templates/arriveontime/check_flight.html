@@ -1,0 +1,14 @@
+
+{% for item in flightInfo %}
+  	<h3>Flight {{item.carrierCode}}{{item.flightNumber}}  </h3>
+  	<p>Published departure from {{item.departureApt}}: {{item.departureDate}}</p>
+  	<p>Published arrival at {{item.arrivalApt}}:  {{item.arrivalDate}}</p>
+ 	{% endfor %}
+ 	{% if user_flight_number %}
+ 	<p>
+ 		Would you like to save {{user_flight_number}} as the flight number for this booking?
+ 		<button type="button" class="btn btn-primary btn-sm save-flight-number" user-flight-number="{{user_flight_number}}" booking-id="{{bookingId}}">save</button>
+ 	</p>
+ 	{% endif %}
+
+  	

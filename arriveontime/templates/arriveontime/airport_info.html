@@ -1,0 +1,21 @@
+{% extends "arriveontime/base.html" %}
+
+{% block menu %}
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+            <li><a href="{% url 'bookings_list' %}">{{user}}'s bookings</a></li>
+            <li class="active"><a href="{% url 'airport_info' %}">general airports info</a></li>
+          </ul>
+        </div>
+     {% endblock %} 
+
+{% block main %}
+  {% for aptDelay in aptsDelay  %}
+  <div class="well">
+  	<h4>{{aptDelay.name}}({{aptDelay.iataCode}}), {{aptDelay.city}}, {{aptDelay.country}}</h4>
+  	<p><b>Total flights</b>: {{aptDelay.flights}}</p>
+    <p> <b>Canceled</b>: {{aptDelay.canceled}}, <b>On Time</b>: {{aptDelay.onTime}} , <b>Delayed 15 min</b>: {{aptDelay.delayed15}},<b> Delayed 30 min</b>: {{aptDelay.delayed30}}, <b>Delayed 45 min</b>: {{aptDelay.delayed45}}</p>
+  </div>
+  {% endfor %}
+{% endblock %}
+  

@@ -1,0 +1,13 @@
+<div class="alert alert-danger">There is no information available for the flight {{ flightInfo.number }}</div>
+<form class="form-horizontal" role="form">
+	<div class="form-group">
+	    <label for="exampleInputEmail1" class="col-sm-4 control-label">Correct the flight number and try again?</label>
+	    <div class="col-sm-4">
+	    	<input type="text" class="form-control" name="flight_number" placeholder="Flight number">	
+	    </div>
+		<div class="col-sm-4">
+			<button type="button" class="btn btn-primary check-manual-flight" booking-id="{{flightInfo.bookingId}}">ok</button>
+		</div>
+	</div>
+	
+</form>

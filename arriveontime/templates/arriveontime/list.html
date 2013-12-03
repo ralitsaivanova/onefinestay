@@ -1,0 +1,70 @@
+{% extends "arriveontime/base.html" %}
+
+{% block menu %}
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="{% url 'bookings_list' %}">{{user}}'s bookings</a></li>
+            <li><a href="{% url 'airport_info' %}">general airports info</a></li>
+          </ul>
+        </div>
+     {% endblock %} 
+
+{% block main %}
+    
+    {% csrf_token %}
+	<div class="panel-group" id="accordion">		
+		{% for booking in bookings  %}
+	    <div class="panel panel-default striped">
+	    		<div class="panel-heading">
+	    			<div class="col-md-1 ">
+						{{forloop.counter}}
+					</div>			
+					<div class="col-md-3 ">
+						{{booking.city}}
+					</div>
+					<div class="col-md-2 ">
+						{{booking.reference}}
+					</div>
+					<div class="col-md-3 ">
+						{{booking.date_from}}
+					</div>
+					<div class="panel-title col-md-3">				
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{booking.id}}" type="button" class="btn btn-block btn-primary btn-sm check-flight " booking-id="{{booking.id}}">
+							<span class="glyphicon glyphicon-plane">&nbsp;</span> Check flight</a>
+							
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{booking.id}}" class="btn btn-danger btn-block btn-sm hidden" booking-id="{{booking.id}}"> <span class="glyphicon glyphicon-remove"></span> Close </a>
+					</div>
+	    		</div>
+	    	
+	    		<div id="collapse{{booking.id}}" class="panel-collapse collapse">
+					<div class="panel-body">
+						<div class="row">
+                                <div class="col-md-12">
+                                        <div class="">
+                                                <div class="progress progress-striped active">
+                                                  <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                        <span class="sr-only">100% Complete</span>
+                                                  </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+					</div>
+				</div>
+	    </div> 
+	{% endfor %}
+	</div>
+
+<div class="row hidden" id="loader">
+          <div class="col-md-12">
+                  <div class="">
+                          <div class="progress progress-striped active">
+                            <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                  <span class="sr-only">100% Complete</span>
+                            </div>
+                          </div>
+                  </div>
+          </div>
+  </div>
+{% endblock %}
+  
